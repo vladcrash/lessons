@@ -11,7 +11,8 @@
         android:id="@+id/launch_fragment_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:text="@string/make_fragment_great_again"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
