@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/textview"
+    android:id="@+id/text_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:text="@string/hello_blank_fragment"
-    android:textSize="24sp"
-    tools:context=".FragmentTwo" />
+    android:textSize="@dimen/text_size"
+    tools:context=".fragment.FragmentTwo"/>
