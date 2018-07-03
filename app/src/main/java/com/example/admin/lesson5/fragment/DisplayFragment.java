@@ -1,4 +1,4 @@
-package com.example.admin.lesson5;
+package com.example.admin.lesson5.fragment;
 
 
 import android.content.ComponentName;
@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.admin.lesson5.IMyAidlInterface;
+import com.example.admin.lesson5.R;
+import com.example.admin.lesson5.service.StorageService;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,17 +29,25 @@ import android.widget.TextView;
 public class DisplayFragment extends Fragment {
     private TextView displayText;
     private Callback callback;
-    private StorageService service;
+    private IMyAidlInterface aidl;
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder localService) {
-            service = ((StorageService.LocalBinder) localService).getService();
-            displayText.setText(service.read());
+            aidl = IMyAidlInterface.Stub.asInterface(localService);
+            setText();
+        }
+
+        private void setText() {
+            try {
+                displayText.setText(aidl.read());
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            aidl = null;
         }
     };
 

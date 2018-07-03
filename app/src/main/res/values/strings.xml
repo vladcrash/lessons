@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">lesson5</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">lesson11</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit">edit</string>
     <string name="display">display</string>
+    <string name="process_name">:new_unusual_process</string>
 </resources>

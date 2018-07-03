@@ -1,12 +1,12 @@
-package com.example.admin.lesson5;
+package com.example.admin.lesson5.fragment;
 
 
-import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +19,10 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.example.admin.lesson5.IMyAidlInterface;
+import com.example.admin.lesson5.R;
+import com.example.admin.lesson5.service.StorageService;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,20 +30,37 @@ import android.widget.EditText;
 public class EditFragment extends Fragment {
     private EditText editText;
     private Callback callback;
-    private StorageService service;
+    private IMyAidlInterface aidl;
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder localService) {
-            service = ((StorageService.LocalBinder) localService).getService();
-            editText.setText(service.read());
-            editText.requestFocus();
+            aidl = IMyAidlInterface.Stub.asInterface(localService);
+            setText();
+            setCursorToTheEnd();
+            showKeyboard();
+        }
+
+        private void setText() {
+            try {
+                editText.setText(aidl.read());
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void showKeyboard() {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         }
 
+        private void setCursorToTheEnd() {
+            editText.requestFocus();
+            editText.setSelection(editText.getText().length());
+        }
+
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            aidl = null;
         }
     };
 
@@ -107,13 +128,25 @@ public class EditFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.done:
-                service.write(editText.getText().toString());
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+                saveData();
+                hideKeyboard();
                 callback.done();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void saveData() {
+        try {
+            aidl.write(editText.getText().toString());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 }
