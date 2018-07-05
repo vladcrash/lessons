@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">lesson5</string>
+    <string name="app_name">lesson9</string>
+    <string name="add_note">add note</string>
+    <string name="settings">settings</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="save">save</string>
+    <string name="no_content">No content</string>
+    <string name="edit">edit</string>
+    <string name="color">Color</string>
+    <string name="text_size">Text Size</string>
 </resources>
