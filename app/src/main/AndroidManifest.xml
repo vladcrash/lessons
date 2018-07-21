@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.DetailInfoActivity"/>
+        <service android:name=".service.ForecastService"/>
     </application>
 
 </manifest>

@@ -6,6 +6,9 @@ import android.arch.persistence.room.Room;
 import com.example.admin.lesson5.db.WeatherDatabase;
 import com.example.admin.lesson5.network.WeatherWebService;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -17,6 +20,7 @@ public class App extends Application {
     private static WeatherWebService weatherWebService;
     private static WeatherDatabase database;
     private Retrofit mRetrofit;
+    private static Executor executor;
 
     @Override
     public void onCreate() {
@@ -30,6 +34,8 @@ public class App extends Application {
 
         database = Room.databaseBuilder(getApplicationContext(), WeatherDatabase.class, DATABASE_NAME)
                 .build();
+
+        executor = Executors.newSingleThreadExecutor();
     }
 
     public static WeatherWebService getWeatherWebService() {
@@ -38,5 +44,9 @@ public class App extends Application {
 
     public static WeatherDatabase getDatabase() {
         return database;
+    }
+
+    public static Executor getExecutor() {
+        return executor;
     }
 }
