@@ -7,4 +7,4 @@
     android:layout_height="match_parent"
     android:scrollbars="vertical"
     app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-    tools:context=".MainActivity" />
+    tools:context="ru.sberbank.android.school.lessons.MainActivity" />

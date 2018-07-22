@@ -1,4 +1,4 @@
-package com.example.admin.lesson5;
+package ru.sberbank.android.school.lessons;
 
 public enum ItemTypes {
     ONE_BUTTON_TYPE(0),
