@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.fragment;
+package ru.sberbank.android.school.lessons.fragment;
 
 
 import android.content.ComponentName;
@@ -20,8 +20,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.example.admin.lesson5.IMyAidlInterface;
-import com.example.admin.lesson5.R;
-import com.example.admin.lesson5.service.StorageService;
+
+import ru.sberbank.android.school.lessons.R;
+import ru.sberbank.android.school.lessons.service.StorageService;
 
 
 /**

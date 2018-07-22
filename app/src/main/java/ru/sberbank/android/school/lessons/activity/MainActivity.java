@@ -1,13 +1,13 @@
-package com.example.admin.lesson5.activity;
+package ru.sberbank.android.school.lessons.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.admin.lesson5.R;
-import com.example.admin.lesson5.fragment.DisplayFragment;
-import com.example.admin.lesson5.fragment.EditFragment;
+import ru.sberbank.android.school.lessons.R;
+import ru.sberbank.android.school.lessons.fragment.DisplayFragment;
+import ru.sberbank.android.school.lessons.fragment.EditFragment;
 
 public class MainActivity extends AppCompatActivity implements DisplayFragment.Callback,
         EditFragment.Callback {

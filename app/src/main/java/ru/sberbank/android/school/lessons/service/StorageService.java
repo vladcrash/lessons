@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.service;
+package ru.sberbank.android.school.lessons.service;
 
 import android.app.Service;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
 import com.example.admin.lesson5.IMyAidlInterface;
-import com.example.admin.lesson5.util.SharedPreferencesManager;
+import ru.sberbank.android.school.lessons.util.SharedPreferencesManager;
 
 public class StorageService extends Service {
     public static final Intent newIntent(Context context) {
