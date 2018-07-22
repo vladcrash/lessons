@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.model;
+package ru.sberbank.android.school.lessons.model;
 
 public class Note {
     private long id;

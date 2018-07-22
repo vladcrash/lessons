@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.adapter;
+package ru.sberbank.android.school.lessons.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.admin.lesson5.model.Note;
-import com.example.admin.lesson5.R;
+import ru.sberbank.android.school.lessons.R;
+import ru.sberbank.android.school.lessons.model.Note;
 
 import java.util.ArrayList;
 import java.util.List;

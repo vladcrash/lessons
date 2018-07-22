@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.activity;
+package ru.sberbank.android.school.lessons.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +10,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.admin.lesson5.storage.DataStorage;
-import com.example.admin.lesson5.storage.DbManager;
-import com.example.admin.lesson5.model.Note;
-import com.example.admin.lesson5.R;
+
+import ru.sberbank.android.school.lessons.R;
+import ru.sberbank.android.school.lessons.model.Note;
+import ru.sberbank.android.school.lessons.storage.DataStorage;
+import ru.sberbank.android.school.lessons.storage.DbManager;
 
 public class NoteDetailActivity extends AppCompatActivity {
     private static final String EXTRA_ID = "ID";

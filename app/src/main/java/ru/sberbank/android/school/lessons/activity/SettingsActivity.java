@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.activity;
+package ru.sberbank.android.school.lessons.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-import com.example.admin.lesson5.storage.DataStorage;
-import com.example.admin.lesson5.R;
+import ru.sberbank.android.school.lessons.R;
+import ru.sberbank.android.school.lessons.storage.DataStorage;
 import com.skydoves.colorpickerpreference.ColorEnvelope;
 import com.skydoves.colorpickerpreference.ColorListener;
 import com.skydoves.colorpickerpreference.ColorPickerView;

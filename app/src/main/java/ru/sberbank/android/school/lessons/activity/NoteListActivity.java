@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.activity;
+package ru.sberbank.android.school.lessons.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,9 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.admin.lesson5.storage.DbManager;
-import com.example.admin.lesson5.adapter.NoteListAdapter;
-import com.example.admin.lesson5.R;
+import ru.sberbank.android.school.lessons.R;
+import ru.sberbank.android.school.lessons.storage.DbManager;
+import ru.sberbank.android.school.lessons.adapter.NoteListAdapter;
 
 public class NoteListActivity extends AppCompatActivity {
     public static final String TITLE_EXTRA = "TITLE_EXTRA";

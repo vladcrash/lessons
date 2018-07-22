@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.storage;
+package ru.sberbank.android.school.lessons.storage;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.example.admin.lesson5.model.Note;
+import ru.sberbank.android.school.lessons.model.Note;
 
 import java.util.ArrayList;
 import java.util.List;

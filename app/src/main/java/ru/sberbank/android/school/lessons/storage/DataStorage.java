@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.storage;
+package ru.sberbank.android.school.lessons.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;

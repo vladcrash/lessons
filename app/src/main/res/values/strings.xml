@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">lesson9</string>
+    <string name="app_name">lesson9-sqlite</string>
     <string name="add_note">add note</string>
     <string name="settings">settings</string>
     <string name="title">Title</string>
