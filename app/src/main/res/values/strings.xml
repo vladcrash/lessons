@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">lesson5</string>
+    <string name="app_name">lesson2-activity</string>
+    <string name="text_textView">Hello World!</string>
+    <string name="text_button1">Screen 1</string>
+    <string name="text_button2">Screen 2</string>
+    <string name="text_textView2">TextView</string>
+    <string name="put_smth">put smth</string>
 </resources>
