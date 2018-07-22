@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.asynchronous;
+package ru.sberbank.android.school.lessons.asynchronous;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

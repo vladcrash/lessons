@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.asynchronous;
+package ru.sberbank.android.school.lessons.asynchronous;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 
 import com.example.admin.lesson5.R;
-import com.example.admin.lesson5.fragment.FragmentThree;
+import ru.sberbank.android.school.lessons.fragment.FragmentThree;
 
 import java.util.ArrayList;
 import java.util.List;

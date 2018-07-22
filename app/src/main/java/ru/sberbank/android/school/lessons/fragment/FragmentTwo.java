@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.fragment;
+package ru.sberbank.android.school.lessons.fragment;
 
 
 import android.os.AsyncTask;

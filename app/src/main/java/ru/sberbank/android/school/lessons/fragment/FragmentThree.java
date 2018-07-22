@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.fragment;
+package ru.sberbank.android.school.lessons.fragment;
 
 
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.admin.lesson5.R;
-import com.example.admin.lesson5.adapter.MyAdapter;
-import com.example.admin.lesson5.asynchronous.ColorsLoader;
+import ru.sberbank.android.school.lessons.adapter.MyAdapter;
+import ru.sberbank.android.school.lessons.asynchronous.ColorsLoader;
 
 import java.util.List;
 import java.util.Random;

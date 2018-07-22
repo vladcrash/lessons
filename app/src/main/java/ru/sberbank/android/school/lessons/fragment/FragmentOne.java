@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.fragment;
+package ru.sberbank.android.school.lessons.fragment;
 
 
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.admin.lesson5.R;
-import com.example.admin.lesson5.asynchronous.ColorLoader;
+import ru.sberbank.android.school.lessons.asynchronous.ColorLoader;
 
 
 /**
