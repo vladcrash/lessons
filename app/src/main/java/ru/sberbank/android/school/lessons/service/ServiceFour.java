@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.service;
+package ru.sberbank.android.school.lessons.service;
 
 import android.animation.ValueAnimator;
 import android.app.Service;
@@ -11,7 +11,7 @@ import android.support.constraint.ConstraintLayout;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 
-import com.example.admin.lesson5.util.DataProviderUtil;
+import ru.sberbank.android.school.lessons.util.DataProviderUtil;
 
 public class ServiceFour extends Service {
 

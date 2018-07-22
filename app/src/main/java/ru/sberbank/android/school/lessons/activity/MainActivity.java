@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.activity;
+package ru.sberbank.android.school.lessons.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -7,21 +7,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.admin.lesson5.R;
-import com.example.admin.lesson5.fragment.FragmentOne;
-import com.example.admin.lesson5.fragment.FragmentThree;
-import com.example.admin.lesson5.fragment.FragmentTwo;
-import com.example.admin.lesson5.service.ServiceOne;
-import com.example.admin.lesson5.service.ServiceThree;
-import com.example.admin.lesson5.service.ServiceTwo;
+import ru.sberbank.android.school.lessons.fragment.FragmentOne;
+import ru.sberbank.android.school.lessons.fragment.FragmentThree;
+import ru.sberbank.android.school.lessons.fragment.FragmentTwo;
+import ru.sberbank.android.school.lessons.service.ServiceOne;
+import ru.sberbank.android.school.lessons.service.ServiceThree;
+import ru.sberbank.android.school.lessons.service.ServiceTwo;
 
 import java.util.concurrent.TimeUnit;
 

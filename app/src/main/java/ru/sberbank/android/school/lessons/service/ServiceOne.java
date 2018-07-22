@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.service;
+package ru.sberbank.android.school.lessons.service;
 
 import android.app.Service;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 
-import com.example.admin.lesson5.util.DataProviderUtil;
-import com.example.admin.lesson5.activity.MainActivity;
+import ru.sberbank.android.school.lessons.util.DataProviderUtil;
+import ru.sberbank.android.school.lessons.activity.MainActivity;
 
 import java.util.concurrent.TimeUnit;
 

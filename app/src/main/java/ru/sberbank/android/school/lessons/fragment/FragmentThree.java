@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.fragment;
+package ru.sberbank.android.school.lessons.fragment;
 
 
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.admin.lesson5.R;
-import com.example.admin.lesson5.activity.MainActivity;
+import ru.sberbank.android.school.lessons.activity.MainActivity;
 
 import java.util.concurrent.TimeUnit;
 

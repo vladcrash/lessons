@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.util;
+package ru.sberbank.android.school.lessons.util;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

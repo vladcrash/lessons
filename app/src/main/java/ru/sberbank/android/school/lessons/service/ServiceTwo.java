@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.service;
+package ru.sberbank.android.school.lessons.service;
 
 import android.app.Service;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.example.admin.lesson5.util.DataProviderUtil;
+import ru.sberbank.android.school.lessons.util.DataProviderUtil;
 
 public class ServiceTwo extends Service {
     public static final Intent newIntent(@NonNull Context context) {

@@ -1,4 +1,4 @@
-package com.example.admin.lesson5.fragment;
+package ru.sberbank.android.school.lessons.fragment;
 
 
 import android.animation.ValueAnimator;
@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.admin.lesson5.R;
-import com.example.admin.lesson5.service.ServiceFour;
+import ru.sberbank.android.school.lessons.service.ServiceFour;
 
 import java.util.concurrent.TimeUnit;
 
