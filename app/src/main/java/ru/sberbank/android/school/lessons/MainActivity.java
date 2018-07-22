@@ -1,4 +1,4 @@
-package com.example.admin.lesson5;
+package ru.sberbank.android.school.lessons;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

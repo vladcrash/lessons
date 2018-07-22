@@ -5,18 +5,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context=".MainActivity">
+    tools:context="ru.sberbank.android.school.lessons.MainActivity">
 
     <fragment
         android:id="@+id/fragment_one"
-        class="com.example.admin.lesson5.FragmentOne"
+        class="ru.sberbank.android.school.lessons.FragmentOne"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5" />
 
     <fragment
         android:id="@+id/fragment_two"
-        class="com.example.admin.lesson5.FragmentTwo"
+        class="ru.sberbank.android.school.lessons.FragmentTwo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5" />
