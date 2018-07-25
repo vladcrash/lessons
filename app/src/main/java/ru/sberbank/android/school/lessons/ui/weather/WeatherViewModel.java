@@ -10,14 +10,13 @@ import ru.sberbank.android.school.lessons.data.model.Forecast;
 
 public class WeatherViewModel {
 
-    private ObservableField<List<Forecast>> forecasts = new ObservableField<>();
     private WeatherAdapter adapter;
-    private WeatherAdapter.OnItemClickListener onItemClickListener;
-    private ObservableBoolean isLoading = new ObservableBoolean();
     private ForecastRepository repository;
+    private ObservableField<List<Forecast>> forecasts = new ObservableField<>();
+    private ObservableBoolean isLoading = new ObservableBoolean();
 
-    public WeatherViewModel(ForecastRepository repository) {
-        adapter = new WeatherAdapter();
+    public WeatherViewModel(ForecastRepository repository, WeatherAdapter adapter) {
+        this.adapter = adapter;
         this.repository = repository;
     }
 
@@ -33,15 +32,8 @@ public class WeatherViewModel {
         repository.getForecasts(forecasts);
     }
 
-    public WeatherAdapter.OnItemClickListener getOnItemClickListener() {
-        return onItemClickListener;
-    }
-
-    public void setOnItemClickListener(WeatherAdapter.OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
     public void onRefresh() {
+        isLoading.set(true);
         repository.onRefresh();
     }
 
@@ -51,9 +43,5 @@ public class WeatherViewModel {
 
     public ObservableBoolean getIsLoading() {
         return isLoading;
-    }
-
-    public void setIsLoading(Boolean isLoading) {
-        this.isLoading.set(isLoading);
     }
 }

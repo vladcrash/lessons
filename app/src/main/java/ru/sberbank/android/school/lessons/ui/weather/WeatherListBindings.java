@@ -10,12 +10,9 @@ import ru.sberbank.android.school.lessons.data.model.Forecast;
 
 public class WeatherListBindings {
 
-    @BindingAdapter({"app:adapter", "app:data", "app:onItemClick"})
-    public void bind(RecyclerView recyclerView, WeatherAdapter adapter, ObservableField<List<Forecast>> forecasts,
-                     WeatherAdapter.OnItemClickListener listener) {
+    @BindingAdapter({"app:adapter", "app:data"})
+    public static void bind(RecyclerView recyclerView, WeatherAdapter adapter, ObservableField<List<Forecast>> forecasts) {
         recyclerView.setAdapter(adapter);
         adapter.setForecasts(forecasts.get());
-        adapter.setOnItemClickListener(listener);
     }
-
 }

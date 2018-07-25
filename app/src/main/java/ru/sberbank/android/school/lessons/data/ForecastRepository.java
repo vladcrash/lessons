@@ -9,8 +9,8 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 import ru.sberbank.android.school.lessons.App;
-import ru.sberbank.android.school.lessons.data.model.Forecast;
 import ru.sberbank.android.school.lessons.data.db.dao.ForecastDao;
+import ru.sberbank.android.school.lessons.data.model.Forecast;
 import ru.sberbank.android.school.lessons.service.ForecastService;
 
 public class ForecastRepository {

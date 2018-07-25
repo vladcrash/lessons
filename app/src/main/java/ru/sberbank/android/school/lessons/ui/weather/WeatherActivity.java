@@ -6,22 +6,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import ru.sberbank.android.school.lessons.App;
 import ru.sberbank.android.school.lessons.R;
 import ru.sberbank.android.school.lessons.data.ForecastRepository;
 import ru.sberbank.android.school.lessons.databinding.ActivityWeatherBinding;
-import ru.sberbank.android.school.lessons.ui.weatherdetail.WeatherDetailActivity;
-import ru.sberbank.android.school.lessons.data.db.dao.ForecastDao;
-import ru.sberbank.android.school.lessons.data.model.Forecast;
 import ru.sberbank.android.school.lessons.service.ForecastService;
-
-import java.util.List;
+import ru.sberbank.android.school.lessons.ui.weatherdetail.WeatherDetailActivity;
 
 public class WeatherActivity extends AppCompatActivity {
 
@@ -34,26 +26,28 @@ public class WeatherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init();
         bind();
+        init();
     }
 
     private void init() {
         receiver = new ForecastReceiver();
         intentFilter = new IntentFilter(FORECASTS_SAVED);
+        viewModel.populateData();
     }
 
     private void bind() {
         ActivityWeatherBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_weather);
         ForecastRepository repository = new ForecastRepository(this);
-        viewModel = new WeatherViewModel(repository);
-        viewModel.setOnItemClickListener(new WeatherAdapter.OnItemClickListener() {
+        WeatherAdapter adapter = new WeatherAdapter();
+        adapter.setOnItemClickListener(new WeatherAdapter.OnItemClickListener() {
             @Override
             public void onClick(Integer forecastId) {
                 Intent intent = WeatherDetailActivity.newIntent(WeatherActivity.this, forecastId);
                 startActivity(intent);
             }
         });
+        viewModel = new WeatherViewModel(repository, adapter);
         binding.setViewModel(viewModel);
     }
 
@@ -61,7 +55,6 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, intentFilter);
-        viewModel.populateData();
     }
 
     @Override

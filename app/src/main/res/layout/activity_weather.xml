@@ -25,7 +25,6 @@
             app:adapter="@{viewModel.adapter}"
             app:data="@{viewModel.forecasts}"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            app:onItemClick="@{viewModel.onItemClickListener}"
             tools:context=".ui.weather.WeatherActivity"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 </layout>

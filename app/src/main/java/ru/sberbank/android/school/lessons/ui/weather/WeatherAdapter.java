@@ -1,18 +1,17 @@
 package ru.sberbank.android.school.lessons.ui.weather;
 
-import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import java.util.List;
 
 import ru.sberbank.android.school.lessons.R;
 import ru.sberbank.android.school.lessons.data.model.Forecast;
-
-import java.lang.ref.WeakReference;
-import java.util.List;
+import ru.sberbank.android.school.lessons.databinding.ListItemWeatherBinding;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder> {
 
@@ -33,7 +32,19 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
     @Override
     public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
         Forecast forecast = forecasts.get(position);
-        holder.bind(forecast);
+        holder.setData(forecast);
+    }
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull WeatherViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        holder.bind();
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull WeatherViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.unbind();
     }
 
     @Override
@@ -53,34 +64,40 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
     public class WeatherViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private Integer forecastId;
-        private TextView date;
-        private TextView temperature;
-        private TextView feelsLikeTemperature;
-        private WeakReference<Context> context;
+        private ListItemWeatherBinding binding;
 
         public WeatherViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            context = new WeakReference<>(itemView.getContext());
-            date = itemView.findViewById(R.id.date);
-            temperature = itemView.findViewById(R.id.temperature_value);
-            feelsLikeTemperature = itemView.findViewById(R.id.temperature_feels_like_value);
+            bind();
         }
 
-        public void bind(Forecast forecast) {
+        public void setData(Forecast forecast) {
             forecastId = forecast.getId();
-            date.setText(forecast.getDate());
-            temperature.setText(getFormattedValue(forecast.getParts().getDay().getTemp()));
-            feelsLikeTemperature.setText(getFormattedValue(forecast.getParts().getDay().getFeelsLike()));
+            setViewModel(new WeatherItemViewModel(forecast));
+        }
+
+        public void bind() {
+            if (binding == null) {
+                binding = DataBindingUtil.bind(itemView);
+            }
+        }
+
+        public void unbind() {
+            if (binding != null) {
+                binding.unbind();
+            }
+        }
+
+        public void setViewModel(WeatherItemViewModel viewModel) {
+            if (binding != null) {
+                binding.setViewModel(viewModel);
+            }
         }
 
         @Override
         public void onClick(View v) {
             onItemClickListener.onClick(forecastId);
-        }
-
-        private String getFormattedValue(int value) {
-            return context.get().getResources().getString(R.string.temperature_value, value);
         }
     }
 }
