@@ -1,4 +1,4 @@
-package ru.sberbank.android.school.lessons.activity;
+package ru.sberbank.android.school.lessons.ui.weatherdetail;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,18 +9,17 @@ import android.support.v7.widget.RecyclerView;
 
 import ru.sberbank.android.school.lessons.App;
 import ru.sberbank.android.school.lessons.R;
-import ru.sberbank.android.school.lessons.adapter.DetailInfoAdapter;
-import ru.sberbank.android.school.lessons.db.dao.HourDao;
+import ru.sberbank.android.school.lessons.data.db.dao.HourDao;
 
-public class DetailInfoActivity extends AppCompatActivity {
+public class WeatherDetailActivity extends AppCompatActivity {
 
-    private static final String ID = "ru.sberbank.android.school.lessons.activity.DetailInfoActivity.ID";
+    private static final String ID = "ru.sberbank.android.school.lessons.ui.weatherdetail.WeatherDetailActivity.ID";
 
     private RecyclerView detailRecyclerView;
-    private DetailInfoAdapter adapter;
+    private WeatherDetailAdapter adapter;
 
     public static final Intent newIntent(Context context, Integer forecastId) {
-        Intent intent = new Intent(context, DetailInfoActivity.class);
+        Intent intent = new Intent(context, WeatherDetailActivity.class);
         intent.putExtra(ID, forecastId);
         return intent;
     }
@@ -28,14 +27,14 @@ public class DetailInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_info);
+        setContentView(R.layout.activity_weather_detail);
         init();
         displayData();
     }
 
     private void init() {
         detailRecyclerView = findViewById(R.id.detail_recycler_view);
-        adapter = new DetailInfoAdapter();
+        adapter = new WeatherDetailAdapter();
         detailRecyclerView.setAdapter(adapter);
     }
 

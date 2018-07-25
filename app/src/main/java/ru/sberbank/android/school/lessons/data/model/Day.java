@@ -1,4 +1,4 @@
-package ru.sberbank.android.school.lessons.model;
+package ru.sberbank.android.school.lessons.data.model;
 
 import android.arch.persistence.room.ColumnInfo;
 

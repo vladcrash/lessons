@@ -1,4 +1,4 @@
-package ru.sberbank.android.school.lessons.adapter;
+package ru.sberbank.android.school.lessons.ui.weather;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,19 +9,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import ru.sberbank.android.school.lessons.R;
-import ru.sberbank.android.school.lessons.model.Forecast;
+import ru.sberbank.android.school.lessons.data.model.Forecast;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder> {
 
-    public interface OnClickItemListener {
+    public interface OnItemClickListener {
         void onClick(Integer forecastId);
     }
 
     private List<Forecast> forecasts;
-    private OnClickItemListener onClickItemListener;
+    private OnItemClickListener onItemClickListener;
 
     @NonNull
     @Override
@@ -46,8 +46,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
         notifyDataSetChanged();
     }
 
-    public void setOnClickItemListener(OnClickItemListener onClickItemListener) {
-        this.onClickItemListener = onClickItemListener;
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     public class WeatherViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -76,7 +76,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
         @Override
         public void onClick(View v) {
-            onClickItemListener.onClick(forecastId);
+            onItemClickListener.onClick(forecastId);
         }
 
         private String getFormattedValue(int value) {

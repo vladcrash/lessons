@@ -1,4 +1,4 @@
-package ru.sberbank.android.school.lessons.adapter;
+package ru.sberbank.android.school.lessons.ui.weatherdetail;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import ru.sberbank.android.school.lessons.R;
-import ru.sberbank.android.school.lessons.model.Hour;
+import ru.sberbank.android.school.lessons.data.model.Hour;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class DetailInfoAdapter extends RecyclerView.Adapter<DetailInfoAdapter.DetailInfoViewHolder> {
+public class WeatherDetailAdapter extends RecyclerView.Adapter<WeatherDetailAdapter.DetailInfoViewHolder> {
 
     private List<Hour> hours;
 
@@ -22,7 +22,7 @@ public class DetailInfoAdapter extends RecyclerView.Adapter<DetailInfoAdapter.De
     @Override
     public DetailInfoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new DetailInfoViewHolder(inflater.inflate(R.layout.list_item_detail_info,
+        return new DetailInfoViewHolder(inflater.inflate(R.layout.list_item_weather_detail,
                 parent, false));
     }
 

@@ -1,6 +1,6 @@
-package ru.sberbank.android.school.lessons.network;
+package ru.sberbank.android.school.lessons.data.network;
 
-import ru.sberbank.android.school.lessons.model.Weather;
+import ru.sberbank.android.school.lessons.data.model.Weather;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -8,13 +8,13 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import ru.sberbank.android.school.lessons.App;
-import ru.sberbank.android.school.lessons.activity.MainActivity;
-import ru.sberbank.android.school.lessons.db.dao.ForecastDao;
-import ru.sberbank.android.school.lessons.db.dao.HourDao;
-import ru.sberbank.android.school.lessons.model.Forecast;
-import ru.sberbank.android.school.lessons.model.Hour;
-import ru.sberbank.android.school.lessons.model.Weather;
-import ru.sberbank.android.school.lessons.network.WeatherWebService;
+import ru.sberbank.android.school.lessons.ui.weather.WeatherActivity;
+import ru.sberbank.android.school.lessons.data.db.dao.ForecastDao;
+import ru.sberbank.android.school.lessons.data.db.dao.HourDao;
+import ru.sberbank.android.school.lessons.data.model.Forecast;
+import ru.sberbank.android.school.lessons.data.model.Hour;
+import ru.sberbank.android.school.lessons.data.model.Weather;
+import ru.sberbank.android.school.lessons.data.network.WeatherWebService;
 
 import java.io.IOException;
 import java.util.List;
@@ -69,7 +69,7 @@ public class ForecastService extends IntentService {
     }
 
     private void sendResult() {
-        Intent intent = new Intent(MainActivity.FORECASTS_SAVED);
+        Intent intent = new Intent(WeatherActivity.FORECASTS_SAVED);
         intent.putExtra(IS_SUCCESS, true);
         LocalBroadcastManager.getInstance(ForecastService.this).sendBroadcast(intent);
         Log.wtf("ForecastService", "sendResult");
