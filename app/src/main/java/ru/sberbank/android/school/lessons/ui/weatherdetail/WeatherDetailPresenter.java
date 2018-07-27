@@ -21,4 +21,9 @@ public class WeatherDetailPresenter implements WeatherDetailContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void detach() {
+        view = null;
+    }
 }

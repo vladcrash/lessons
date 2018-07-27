@@ -50,4 +50,10 @@ public class WeatherDetailActivity extends AppCompatActivity implements WeatherD
     public void showHourlyForecastsForDay(List<Hour> forecasts) {
         adapter.setHours(forecasts);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.detach();
+    }
 }
