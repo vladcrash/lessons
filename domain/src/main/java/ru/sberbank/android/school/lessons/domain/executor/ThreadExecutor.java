@@ -8,19 +8,14 @@ import ru.sberbank.android.school.lessons.domain.interactor.UseCase;
 
 public class ThreadExecutor<P> implements WeatherExecutor<P> {
 
-    private static ThreadExecutor threadExecutor;
     private Executor executor;
 
     private ThreadExecutor() {
         executor = Executors.newSingleThreadExecutor();
     }
 
-    public static WeatherExecutor getInstance() {
-        if (threadExecutor != null) {
-            return threadExecutor;
-        }
-
-        return threadExecutor = new ThreadExecutor();
+    public ThreadExecutor(Executor executor) {
+        this.executor = executor;
     }
 
     @Override

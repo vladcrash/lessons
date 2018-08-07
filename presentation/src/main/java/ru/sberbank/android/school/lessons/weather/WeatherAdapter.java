@@ -1,5 +1,7 @@
 package ru.sberbank.android.school.lessons.weather;
 
+import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,20 +14,18 @@ import java.util.List;
 import ru.sberbank.android.school.lessons.R;
 import ru.sberbank.android.school.lessons.domain.model.Forecast;
 import ru.sberbank.android.school.lessons.databinding.ListItemWeatherBinding;
+import ru.sberbank.android.school.lessons.weatherdetail.WeatherDetailActivity;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder> {
 
-    public interface OnItemClickListener {
-        void onClick(Integer forecastId);
-    }
-
     private List<Forecast> forecasts;
-    private OnItemClickListener onItemClickListener;
+    private Context context;
 
     @NonNull
     @Override
     public WeatherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
         return new WeatherViewHolder(inflater.inflate(R.layout.list_item_weather, parent, false));
     }
 
@@ -55,10 +55,6 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
     public void setForecasts(List<Forecast> forecasts) {
         this.forecasts = forecasts;
         notifyDataSetChanged();
-    }
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
     }
 
     public class WeatherViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -97,7 +93,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
         @Override
         public void onClick(View v) {
-            onItemClickListener.onClick(forecastId);
+            Intent intent = WeatherDetailActivity.newIntent(context, forecastId);
+            context.startActivity(intent);
         }
     }
 }

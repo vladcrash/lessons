@@ -9,19 +9,22 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
-import ru.sberbank.android.school.lessons.MainThreadImpl;
+import javax.inject.Inject;
+
+import ru.sberbank.android.school.lessons.App;
 import ru.sberbank.android.school.lessons.R;
-import ru.sberbank.android.school.lessons.data.repository.ForecastRepositoryImpl;
-import ru.sberbank.android.school.lessons.domain.executor.ThreadExecutor;
 import ru.sberbank.android.school.lessons.domain.model.Hour;
 
 public class WeatherDetailActivity extends AppCompatActivity implements WeatherDetailContract.View {
 
     private static final String ID = "ru.sberbank.android.school.lessons.ui.weatherdetail.WeatherDetailActivity.ID";
 
+    @Inject
+    WeatherDetailAdapter adapter;
+
+    @Inject
+    WeatherDetailContract.Presenter presenter;
     private RecyclerView detailRecyclerView;
-    private WeatherDetailAdapter adapter;
-    private WeatherDetailContract.Presenter presenter;
 
     public static final Intent newIntent(Context context, Integer forecastId) {
         Intent intent = new Intent(context, WeatherDetailActivity.class);
@@ -33,16 +36,21 @@ public class WeatherDetailActivity extends AppCompatActivity implements WeatherD
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_detail);
+        setup();
         init();
         load();
     }
 
+    private void setup() {
+        App.get(this)
+            .plusWeatherDetailComponent()
+            .inject(this);
+    }
+
     private void init() {
         detailRecyclerView = findViewById(R.id.detail_recycler_view);
-        adapter = new WeatherDetailAdapter();
         detailRecyclerView.setAdapter(adapter);
-        presenter = new WeatherDetailPresenter(MainThreadImpl.getInstance(), ThreadExecutor.getInstance(),
-                new ForecastRepositoryImpl(),this);
+        presenter.attach(this);
     }
 
     private void load() {
@@ -59,5 +67,6 @@ public class WeatherDetailActivity extends AppCompatActivity implements WeatherD
     protected void onDestroy() {
         super.onDestroy();
         presenter.detach();
+        App.get(this).releaseWeatherDetailComponent();
     }
 }

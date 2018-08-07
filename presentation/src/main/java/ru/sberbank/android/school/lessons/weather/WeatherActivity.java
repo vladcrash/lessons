@@ -1,46 +1,46 @@
 package ru.sberbank.android.school.lessons.weather;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import ru.sberbank.android.school.lessons.MainThreadImpl;
+import javax.inject.Inject;
+
+import ru.sberbank.android.school.lessons.App;
 import ru.sberbank.android.school.lessons.R;
-import ru.sberbank.android.school.lessons.data.repository.ForecastRepositoryImpl;
 import ru.sberbank.android.school.lessons.databinding.ActivityWeatherBinding;
-import ru.sberbank.android.school.lessons.domain.executor.ThreadExecutor;
-import ru.sberbank.android.school.lessons.weatherdetail.WeatherDetailActivity;
 
 public class WeatherActivity extends AppCompatActivity {
 
-    private WeatherViewModel viewModel;
+    @Inject
+    WeatherViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bind();
+        setup();
         init();
+        load();
     }
 
-    private void init() {
+    private void setup() {
+        App.get(this)
+            .plusWeatherComponent()
+            .inject(this);
+    }
+
+    private void load() {
         viewModel.populateData();
     }
 
-    private void bind() {
+    private void init() {
         ActivityWeatherBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_weather);
-        ForecastRepositoryImpl repository = new ForecastRepositoryImpl();
-        WeatherAdapter adapter = new WeatherAdapter();
-        adapter.setOnItemClickListener(new WeatherAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(Integer forecastId) {
-                Intent intent = WeatherDetailActivity.newIntent(WeatherActivity.this, forecastId);
-                startActivity(intent);
-            }
-        });
-
-        viewModel = new WeatherViewModel(MainThreadImpl.getInstance(), ThreadExecutor.getInstance(),
-                repository, adapter);
         binding.setViewModel(viewModel);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        App.get(this).releaseWeatherComponent();
     }
 }

@@ -13,11 +13,14 @@ public class GetHourlyForecasts extends UseCase<Integer> {
     private ForecastRepository repository;
     private Callback<List<Hour>> callback;
 
-    public GetHourlyForecasts(MainThread mainThread, WeatherExecutor executor, Callback<List<Hour>> callback,
+    public GetHourlyForecasts(MainThread mainThread, WeatherExecutor<Integer> executor,
                               ForecastRepository repository) {
         super(mainThread, executor);
-        this.callback = callback;
         this.repository = repository;
+    }
+
+    public void setCallback(Callback<List<Hour>> callback) {
+        this.callback = callback;
     }
 
     @Override

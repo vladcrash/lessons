@@ -5,25 +5,21 @@ import android.databinding.ObservableField;
 
 import java.util.List;
 
-import ru.sberbank.android.school.lessons.domain.executor.MainThread;
-import ru.sberbank.android.school.lessons.domain.executor.WeatherExecutor;
 import ru.sberbank.android.school.lessons.domain.interactor.Callback;
 import ru.sberbank.android.school.lessons.domain.interactor.GetDailyForecasts;
 import ru.sberbank.android.school.lessons.domain.model.Forecast;
-import ru.sberbank.android.school.lessons.data.repository.ForecastRepositoryImpl;
 
 public class WeatherViewModel implements Callback<List<Forecast>>{
 
     private WeatherAdapter adapter;
+    private GetDailyForecasts getDailyForecastsUseCase;
     private ObservableField<List<Forecast>> forecasts = new ObservableField<>();
     private ObservableBoolean isLoading = new ObservableBoolean();
-    private GetDailyForecasts getDailyForecastsUseCase;
 
-    public WeatherViewModel(MainThread mainThread, WeatherExecutor<Boolean> executor,
-                            ForecastRepositoryImpl repository, WeatherAdapter adapter) {
+    public WeatherViewModel(WeatherAdapter adapter, GetDailyForecasts getDailyForecastsUseCase) {
         this.adapter = adapter;
-        getDailyForecastsUseCase = new GetDailyForecasts(mainThread, executor,
-                this, repository);
+        this.getDailyForecastsUseCase = getDailyForecastsUseCase;
+        this.getDailyForecastsUseCase.setCallback(this);
     }
 
     public ObservableField<List<Forecast>> getForecasts() {

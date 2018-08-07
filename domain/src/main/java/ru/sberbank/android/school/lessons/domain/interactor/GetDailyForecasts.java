@@ -12,11 +12,14 @@ public class GetDailyForecasts extends UseCase<Boolean> {
     private ForecastRepository repository;
     private Callback<List<Forecast>> callback;
 
-    public GetDailyForecasts(MainThread mainThread, WeatherExecutor<Boolean> executor, Callback<List<Forecast>> callback,
+    public GetDailyForecasts(MainThread mainThread, WeatherExecutor<Boolean> executor,
                              ForecastRepository repository) {
         super(mainThread, executor);
-        this.callback = callback;
         this.repository = repository;
+    }
+
+    public void setCallback(Callback<List<Forecast>> callback) {
+        this.callback = callback;
     }
 
     @Override

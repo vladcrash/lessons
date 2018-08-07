@@ -4,6 +4,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation "android.arch.persistence.room:runtime:1.1.1"
+
+    implementation 'com.google.dagger:dagger:2.16'
+    implementation 'com.google.dagger:dagger-android-support:2.16'
+
     testImplementation 'junit:junit:4.12'
 }
 

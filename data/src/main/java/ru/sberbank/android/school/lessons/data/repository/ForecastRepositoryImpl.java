@@ -7,7 +7,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
-import ru.sberbank.android.school.lessons.data.App;
+
+import ru.sberbank.android.school.lessons.data.db.WeatherDatabase;
 import ru.sberbank.android.school.lessons.data.db.dao.ForecastDao;
 import ru.sberbank.android.school.lessons.data.db.dao.HourDao;
 import ru.sberbank.android.school.lessons.data.network.WeatherWebService;
@@ -20,8 +21,12 @@ public class ForecastRepositoryImpl implements ForecastRepository {
 
     private static final String TAG = "ForecastRepositoryImpl";
 
-    public ForecastRepositoryImpl() {
+    private WeatherWebService weatherWebService;
+    private WeatherDatabase weatherDatabase;
 
+    public ForecastRepositoryImpl(WeatherWebService weatherWebService, WeatherDatabase weatherDatabase) {
+        this.weatherWebService = weatherWebService;
+        this.weatherDatabase = weatherDatabase;
     }
 
     @Override
@@ -38,13 +43,12 @@ public class ForecastRepositoryImpl implements ForecastRepository {
 
     @Override
     public List<Hour> getHourlyForecasts(Integer dayId) {
-        HourDao hourDao = App.getDatabase().hourDao();
+        HourDao hourDao = weatherDatabase.hourDao();
         return hourDao.getHoursByForecastId(dayId);
     }
 
     private void loadForecastsFromNetwork() {
-        WeatherWebService service = App.getWeatherWebService();
-        Call<Weather> weather = service.getWeather();
+        Call<Weather> weather = weatherWebService.getWeather();
         try {
             Response<Weather> response = weather.execute();
             if (response.isSuccessful() && response.body() != null) {
@@ -56,13 +60,13 @@ public class ForecastRepositoryImpl implements ForecastRepository {
     }
 
     private List<Forecast> loadForecastsFromDB() {
-        ForecastDao forecastDao = App.getDatabase().forecastDao();
+        ForecastDao forecastDao = weatherDatabase.forecastDao();
         return forecastDao.getAll();
     }
 
     private void saveForecasts(final List<Forecast> forecasts) {
-        ForecastDao forecastDao = App.getDatabase().forecastDao();
-        HourDao hourDao = App.getDatabase().hourDao();
+        ForecastDao forecastDao = weatherDatabase.forecastDao();
+        HourDao hourDao = weatherDatabase.hourDao();
         forecastDao.deleteAll();
         forecastDao.insertAll(forecasts);
         List<Forecast> listWithIds = forecastDao.getAll();

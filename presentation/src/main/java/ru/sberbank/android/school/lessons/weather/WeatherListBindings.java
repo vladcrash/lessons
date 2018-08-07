@@ -3,6 +3,7 @@ package ru.sberbank.android.school.lessons.weather;
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.List;
 
