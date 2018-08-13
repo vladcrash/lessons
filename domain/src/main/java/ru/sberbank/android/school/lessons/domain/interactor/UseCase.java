@@ -1,21 +1,32 @@
 package ru.sberbank.android.school.lessons.domain.interactor;
 
-import ru.sberbank.android.school.lessons.domain.executor.WeatherExecutor;
-import ru.sberbank.android.school.lessons.domain.executor.MainThread;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
 
-public abstract class UseCase<P> {
+public abstract class UseCase<T, P> {
 
-    protected MainThread mainThread;
-    protected WeatherExecutor<P> threadExecutor;
+    private CompositeDisposable disposable;
 
-    public UseCase(MainThread mainThread, WeatherExecutor<P> threadExecutor) {
-        this.mainThread = mainThread;
-        this.threadExecutor = threadExecutor;
+    public UseCase() {
+        disposable = new CompositeDisposable();
     }
 
-    public abstract void run(P params);
+    public abstract Single<T> run(P params);
 
-    public void execute(P params) {
-        threadExecutor.execute(this, params);
+    public void execute(DisposableSingleObserver<T> singleObserver, P params) {
+        disposable.add(run(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(singleObserver)
+        );
+    }
+
+    public void dispose() {
+        if (!disposable.isDisposed()) {
+            disposable.dispose();
+        }
     }
 }

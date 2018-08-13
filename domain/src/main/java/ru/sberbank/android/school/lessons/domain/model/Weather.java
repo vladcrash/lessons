@@ -12,7 +12,7 @@ import java.util.List;
 public class Weather {
 
     @PrimaryKey(autoGenerate = true)
-    private Integer id;
+    private Long id;
 
     @SerializedName("forecasts")
     @Ignore
@@ -21,11 +21,11 @@ public class Weather {
     public Weather() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

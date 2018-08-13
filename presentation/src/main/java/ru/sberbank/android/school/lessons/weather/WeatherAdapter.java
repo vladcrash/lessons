@@ -59,7 +59,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
     public class WeatherViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private Integer forecastId;
+        private Long forecastId;
         private ListItemWeatherBinding binding;
 
         public WeatherViewHolder(View itemView) {

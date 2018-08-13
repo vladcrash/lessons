@@ -5,11 +5,11 @@ import android.databinding.ObservableField;
 
 import java.util.List;
 
-import ru.sberbank.android.school.lessons.domain.interactor.Callback;
+import io.reactivex.observers.DisposableSingleObserver;
 import ru.sberbank.android.school.lessons.domain.interactor.GetDailyForecasts;
 import ru.sberbank.android.school.lessons.domain.model.Forecast;
 
-public class WeatherViewModel implements Callback<List<Forecast>>{
+public class WeatherViewModel {
 
     private WeatherAdapter adapter;
     private GetDailyForecasts getDailyForecastsUseCase;
@@ -19,7 +19,6 @@ public class WeatherViewModel implements Callback<List<Forecast>>{
     public WeatherViewModel(WeatherAdapter adapter, GetDailyForecasts getDailyForecastsUseCase) {
         this.adapter = adapter;
         this.getDailyForecastsUseCase = getDailyForecastsUseCase;
-        this.getDailyForecastsUseCase.setCallback(this);
     }
 
     public ObservableField<List<Forecast>> getForecasts() {
@@ -35,22 +34,25 @@ public class WeatherViewModel implements Callback<List<Forecast>>{
     }
 
     public void populateData() {
-        getDailyForecastsUseCase.execute(false);
+        getDailyForecastsUseCase.execute(new DailyForecastsObserver(), false);
     }
 
     public void onRefresh() {
         isLoading.set(true);
-        getDailyForecastsUseCase.execute(true);
+        getDailyForecastsUseCase.execute(new DailyForecastsObserver(), true);
     }
 
-    @Override
-    public void onSuccess(List<Forecast> forecasts) {
-        this.forecasts.set(forecasts);
-        isLoading.set(false);
-    }
+    private class DailyForecastsObserver extends DisposableSingleObserver<List<Forecast>> {
 
-    @Override
-    public void onError(Throwable throwable) {
+        @Override
+        public void onSuccess(List<Forecast> forecastList) {
+            forecasts.set(forecastList);
+            isLoading.set(false);
+        }
 
+        @Override
+        public void onError(Throwable e) {
+
+        }
     }
 }

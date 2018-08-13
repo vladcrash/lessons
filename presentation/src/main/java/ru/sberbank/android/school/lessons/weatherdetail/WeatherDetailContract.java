@@ -13,6 +13,6 @@ public interface WeatherDetailContract {
     }
 
     interface Presenter extends BasePresenter<View> {
-        void loadHourlyForecastsForDay(Integer dayId);
+        void loadHourlyForecastsForDay(Long dayId);
     }
 }

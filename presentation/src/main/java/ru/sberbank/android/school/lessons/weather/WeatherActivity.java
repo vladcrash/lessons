@@ -29,13 +29,13 @@ public class WeatherActivity extends AppCompatActivity {
             .inject(this);
     }
 
-    private void load() {
-        viewModel.populateData();
-    }
-
     private void init() {
         ActivityWeatherBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_weather);
         binding.setViewModel(viewModel);
+    }
+
+    private void load() {
+        viewModel.populateData();
     }
 
     @Override

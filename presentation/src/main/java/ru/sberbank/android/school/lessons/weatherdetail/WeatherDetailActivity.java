@@ -26,7 +26,7 @@ public class WeatherDetailActivity extends AppCompatActivity implements WeatherD
     WeatherDetailContract.Presenter presenter;
     private RecyclerView detailRecyclerView;
 
-    public static final Intent newIntent(Context context, Integer forecastId) {
+    public static final Intent newIntent(Context context, Long forecastId) {
         Intent intent = new Intent(context, WeatherDetailActivity.class);
         intent.putExtra(ID, forecastId);
         return intent;
@@ -54,7 +54,7 @@ public class WeatherDetailActivity extends AppCompatActivity implements WeatherD
     }
 
     private void load() {
-        Integer dayId = getIntent().getIntExtra(ID, 0);
+        Long dayId = getIntent().getLongExtra(ID, 0);
         presenter.loadHourlyForecastsForDay(dayId);
     }
 

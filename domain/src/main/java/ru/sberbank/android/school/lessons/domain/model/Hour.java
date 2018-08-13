@@ -16,10 +16,10 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 public class Hour {
 
     @PrimaryKey(autoGenerate = true)
-    private Integer id;
+    private Long id;
 
     @ColumnInfo(name = "forecast_id")
-    private Integer forecastId;
+    private Long forecastId;
 
     @SerializedName("hour")
     @ColumnInfo(name = "hour")
@@ -36,19 +36,19 @@ public class Hour {
     public Hour() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getForecastId() {
+    public Long getForecastId() {
         return forecastId;
     }
 
-    public void setForecastId(Integer forecastId) {
+    public void setForecastId(Long forecastId) {
         this.forecastId = forecastId;
     }
 

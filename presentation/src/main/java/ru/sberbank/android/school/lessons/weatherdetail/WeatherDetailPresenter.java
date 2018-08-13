@@ -2,23 +2,22 @@ package ru.sberbank.android.school.lessons.weatherdetail;
 
 import java.util.List;
 
-import ru.sberbank.android.school.lessons.domain.interactor.Callback;
+import io.reactivex.observers.DisposableSingleObserver;
 import ru.sberbank.android.school.lessons.domain.interactor.GetHourlyForecasts;
 import ru.sberbank.android.school.lessons.domain.model.Hour;
 
-public class WeatherDetailPresenter implements WeatherDetailContract.Presenter, Callback<List<Hour>> {
+public class WeatherDetailPresenter implements WeatherDetailContract.Presenter {
 
     private WeatherDetailContract.View view;
     private GetHourlyForecasts getHourlyForecastsUseCase;
 
     public WeatherDetailPresenter(GetHourlyForecasts getHourlyForecastsUseCase) {
         this.getHourlyForecastsUseCase = getHourlyForecastsUseCase;
-        this.getHourlyForecastsUseCase.setCallback(this);
     }
 
     @Override
-    public void loadHourlyForecastsForDay(final Integer dayId) {
-        getHourlyForecastsUseCase.execute(dayId);
+    public void loadHourlyForecastsForDay(final Long dayId) {
+        getHourlyForecastsUseCase.execute(new HourlyForecastsObserver(), dayId);
     }
 
     @Override
@@ -29,15 +28,19 @@ public class WeatherDetailPresenter implements WeatherDetailContract.Presenter, 
     @Override
     public void detach() {
         view = null;
+        getHourlyForecastsUseCase.dispose();
     }
 
-    @Override
-    public void onSuccess(List<Hour> hours) {
-        view.showHourlyForecastsForDay(hours);
-    }
+    private class HourlyForecastsObserver extends DisposableSingleObserver<List<Hour>> {
 
-    @Override
-    public void onError(Throwable throwable) {
+        @Override
+        public void onSuccess(List<Hour> hours) {
+            view.showHourlyForecastsForDay(hours);
+        }
 
+        @Override
+        public void onError(Throwable e) {
+
+        }
     }
 }

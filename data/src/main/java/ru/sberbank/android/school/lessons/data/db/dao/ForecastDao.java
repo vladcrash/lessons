@@ -6,16 +6,17 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+import io.reactivex.Single;
 import ru.sberbank.android.school.lessons.domain.model.Forecast;
 
 @Dao
 public interface ForecastDao {
 
     @Query("SELECT * FROM FORECAST")
-    List<Forecast> getAll();
+    Single<List<Forecast>> getAll();
 
     @Insert
-    void insertAll(List<Forecast> forecasts);
+    long[] insertAll(List<Forecast> forecasts);
 
     @Query("DELETE FROM FORECAST")
     void deleteAll();
