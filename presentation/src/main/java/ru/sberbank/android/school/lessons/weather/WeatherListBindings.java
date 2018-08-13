@@ -11,7 +11,7 @@ import ru.sberbank.android.school.lessons.domain.model.Forecast;
 
 public class WeatherListBindings {
 
-    @BindingAdapter({"app:adapter", "app:data"})
+    @BindingAdapter({"adapter", "data"})
     public static void bind(RecyclerView recyclerView, WeatherAdapter adapter, ObservableField<List<Forecast>> forecasts) {
         recyclerView.setAdapter(adapter);
         adapter.setForecasts(forecasts.get());

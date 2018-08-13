@@ -3,6 +3,7 @@ package ru.sberbank.android.school.lessons.domain.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
@@ -12,7 +13,8 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @Entity(foreignKeys = @ForeignKey(entity = Forecast.class,
         parentColumns = "id",
         childColumns = "forecast_id",
-        onDelete = CASCADE))
+        onDelete = CASCADE),
+        indices = @Index(value = "forecast_id"))
 public class Hour {
 
     @PrimaryKey(autoGenerate = true)
